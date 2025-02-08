@@ -1,1 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>バレーボール スコアボード</title>
+
+    <style>
+       
+
+       .container{
+            font-family: "Poppins",sans-serif;
+            }
+       
+        .scorebord{
+            background-color: #1e1e21;
+            width: min(90%, 34em);
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top: 50%;
+            padding: 3em;
+            /* border-radius: 0.5em; */
+            display: grid;
+            grid-template-columns: 2fr 1fr 2fr;
+            align-items: center;
+        }
+
+        .team{
+            text-align: center;
+            background-color: #353638;
+            padding: 2em;
+            border-radius: 0.5em;
+        }
+
+        button{
+            cursor: pointer;
+        }
+
+        #reset-btn{
+            background-color: transparent;
+            border: 3px solid  #ffffff;
+            color:  #ffffff;
+            height: 5em;
+            width: 5em;
+            margin: auto;
+            border-radius: 0.5em;
+        }
+
+        .team h2 {
+            color:  #ffffff;
+        }
+
+        .team p {
+            color: #ffffff;
+            font-size: 3.75em;
+        }
+
+        .btn-container{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .team button{
+            background-color:  #ffffff;
+            border: none;
+            outline: none;
+            padding: 0.3em 0.7em;
+            font-weight: 600;
+            font-size: 1.3em;
+        }
+
+        .target{
+        width:10px;
+        height:10px;
+        border-radius:50%;
+        margin-top: 30px;
+        margin-right:5px;
+        margin-left: 5px;
+        }
+        .white{
+            background-color: white;
+        }
+        .red{
+            background-color: red;
+        }
+
+    </style>
+  
+        
+</head>
+
+<body>
+<div class="container">
+        <!-- teamA -->
+    <div class="scorebord">
+        
+       
+        
+            <div class="team">
+                <h2>Team A</h2>
+                <p id="teamAScore">0</p>
+                <div class="btn-container">
+                    <button onclick="incrementScore('teamA')">+</button>
+                    <button onclick="decrementScore('teamA')">-</button>
+                </div>
+            <table align="center">
+                <tr>
+                <td><div class="target white"></div></td>
+                <td><div class="target white"></div></td>
+                <td><div class="target white"></div></td>
+                </tr>
+            </table>
+                
+                
+            </div>
+        
+
+    <!-- reset -->
+     <button id="reset-btn" onclick="resetScores()">Reset</button>
+
+    
+    
+     <!-- teamB -->
+    
+        <div class="team">
+            <h2>Team B</h2>
+            <p id="teamBScore">0</p>
+            <div class="btn-container">
+                    <button onclick="incrementScore('teamB')">+</button>
+                    <button onclick="decrementScore('teamB')">-</button>
+                    
+            </div>
+            <table align="center">
+                <tr>
+                    <td><div class="target white"></div></td>
+                    <td><div class="target white"></div></td>
+                    <td><div class="target white"></div></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    let teamAScore = 0;
+    let teamBScore = 0;
+
+    let teamAScoreValue = document.getElementById("teamAScore");
+    let teamBScoreValue = document.getElementById("teamBScore");
+
+    let incrementScore = (team) => {
+        if(team === 'teamA' && teamAScore < 21){
+            teamAScore++;
+            teamAScoreValue.textContent = teamAScore;
+        } else if ((team === 'teamB' && teamBScore < 21 )){
+            teamBScore++;
+            teamBScoreValue.textContent = teamBScore;
+        }
+    };
+
+    let decrementScore = (team) => {
+        if(team === 'teamA'&& teamAScore > 0){
+            teamAScore--;
+            teamAScoreValue.textContent = teamAScore;
+        } else if ((team === 'teamB'&& teamBScore > 0)){
+            teamBScore--;
+            teamBScoreValue.textContent = teamBScore;
+        }
+    };
+
+    let resetScores = () => {
+        teamAScore = 0;
+        teamBScore = 0;
+        teamAScoreValue.textContent = teamAScore;
+        teamBScoreValue.textContent = teamBScore;
+    };
+
+
+    const target = document.querySelector('.target');
+    target.addEventListener('click',function(){
+    target.classList.toggle('red');
+});
+
+
+</script>
+
+</body>
+
+
+</html>
 
